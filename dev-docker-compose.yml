@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  nginx:
+    image: nginx:1.17.6-alpine
+    ports:
+      - "${LISTENIP:-127.0.0.1}:8080:80"
+    volumes:
+      - type: bind
+        source: ./static
+        target: /site/sightreading.training/static
+      - type: bind
+        source: ./serverless
+        target: /site/sightreading.training/serverless
+      - type: bind
+        source: ./mime.types
+        target: /site/sightreading.training/mime.types
+      - type: bind
+        source: ./serverless-nginx.conf
+        target: /site/sightreading.training/serverless-nginx.conf
+    entrypoint:
+      - nginx
+      - '-c'
+      - /site/sightreading.training/serverless-nginx.conf
