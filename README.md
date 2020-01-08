@@ -85,3 +85,27 @@ rm -rf .tup/
 ```
 
 Then do 3rd & 4th steps again.
+
+## Run dev serverless version
+
+#### 1\. Install docker-compose
+
+#### 2\. Build all static
+
+For macOS see instruction above.
+
+#### 3\. Run
+
+```
+docker-compose -f dev-docker-compose.yml up
+```
+
+#### 4\. After any changes
+
+Run tup for regenerating files
+
+```
+tup
+```
+
+or use `tup monitor` if you on linux.
