@@ -46,7 +46,9 @@ class Layout extends React.Component {
           this.setState({midi: midi})
           this.loadDefaultSettings()
         },
-        error => console.warn("failed to get MIDI"))
+        error => console.warn("failed to get MIDI access"))
+    } else {
+      console.warn("MIDI support not found")
     }
   }
 
@@ -197,7 +199,13 @@ class Layout extends React.Component {
 
   midiInputs() {
     if (!this.state.midi) return;
-    return [...this.state.midi.inputs.values()];
+
+    var inputs = [];
+    var iter = this.state.midi.inputs.values();
+    for (var o = iter.next(); !o.done; o = iter.next()) {
+      inputs.push(o.value);
+    }
+    return inputs;
   }
 
   setInput(idx) {

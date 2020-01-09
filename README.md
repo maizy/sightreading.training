@@ -10,6 +10,7 @@ Branch | Description
 [setup-fork](https://github.com/maizy/sightreading.training/pull/2/files) | Fork setup, fix file names for macOS
 [iss4-serverless-build](https://github.com/maizy/sightreading.training/pull/7/files) | Serverless version: build docker container
 [iss5-macos-dev-support](https://github.com/maizy/sightreading.training/pull/6/files) | Dev automation for serverless version, especially for macOS
+[iss5-ios-support](https://github.com/maizy/sightreading.training/pull/8/files) | iOS + Web MIDI Browser support (authored by [@MaienM](https://github.com/MaienM/sightreading.training))
 
 ## Serverless version
 
