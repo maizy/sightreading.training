@@ -46,7 +46,9 @@ class Layout extends React.Component {
           this.setState({midi: midi})
           this.loadDefaultSettings()
         },
-        error => console.warn("failed to get MIDI"))
+        error => console.warn("failed to get MIDI access"))
+    } else {
+      console.warn("MIDI support not found")
     }
   }
 
