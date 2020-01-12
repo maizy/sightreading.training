@@ -1,0 +1,11 @@
+.git
+.idea
+.tup
+static/guides/*.json
+static/js/song_parser_peg.es6
+node_modules
+**/*.css
+**/*.js
+!static/define_libs.js
+!static/soundfonts/*
+!static/pre_libs.js

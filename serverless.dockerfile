@@ -1,12 +1,6 @@
 FROM archlinux/base:latest
 
-RUN pacman -Sy base-devel lua51 luajit luarocks tup nginx git npm discount sassc --noconfirm && (yes | pacman -Scc || :)
-
-# setup lua (TODO: remove, need only for static/guides compilation)
-RUN luarocks --lua-version=5.1 install moonscript && \
-    luarocks --lua-version=5.1 install discount && \
-    luarocks --lua-version=5.1 install lua-cjson
-RUN eval $(luarocks --lua-version=5.1 path)
+RUN pacman -Sy base-devel tup nginx git npm sassc python3 --noconfirm && (yes | pacman -Scc || :)
 
 WORKDIR /site/sightreading.training
 
@@ -18,11 +12,10 @@ RUN npm install
 ADD . .
 
 RUN sed -i.bak 's/^.*moon.*//' ./Tuprules.tup && \
-    tup init
-
-RUN tup generate build.sh && \
-    sed -i.bak '2iset -o xtrace' build.sh
-
-RUN ./build.sh
+    tup init && \
+    tup generate build.sh && \
+    sed -i.bak '2iset -o xtrace' build.sh && \
+    ./build.sh && \
+    rm -r node_modules .tup
 
 ENTRYPOINT nginx -c /site/sightreading.training/serverless-nginx.conf

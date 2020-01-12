@@ -11,6 +11,7 @@ Branch | Description
 [iss4-serverless-build](https://github.com/maizy/sightreading.training/pull/7/files) | Serverless version: build docker container
 [iss5-macos-dev-support](https://github.com/maizy/sightreading.training/pull/6/files) | Dev automation for serverless version, especially for macOS
 [iss5-ios-support](https://github.com/maizy/sightreading.training/pull/8/files) | iOS + Web MIDI Browser support (authored by [@MaienM](https://github.com/MaienM/sightreading.training))
+[iss4-python-guides-converter](https://github.com/maizy/sightreading.training/pull/9/files) | Remove lua requirements for building statics, use python instead)
 
 ## Serverless version
 
@@ -35,26 +36,14 @@ Server started at [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
 #### 1\.
 
 ```
-brew cask install osxfuse
-brew install sassc npm tup
+brew cask install osxfuse  # restart may required
+brew install sassc npm tup python
+python -m pip install -r requirements.txt
 ```
 
 #### 2\. comment line with moon
 
-in `Tuprules.tup`
-
-```diff
---- a/Tuprules.tup
-+++ b/Tuprules.tup
-@@ -15,4 +15,4 @@ TOP = $(TUP_CWD)
- !pegjs = |> cat %f | $(TOP)/node_modules/.bin/pegjs --format amd  | sed -e 's/^define(/define("st\/%O", /' > %o  |>
-
- : foreach *.scss |> !scss |> %B.css
--: foreach *.moon |> moonc %f |> %B.lua
-+# : foreach *.moon |> moonc %f |> %B.lua
-```
-
-and in `static/guides/Tupfile`
+in `static/guides/Tupfile`
 
 ```diff
 --- a/static/guides/Tupfile
