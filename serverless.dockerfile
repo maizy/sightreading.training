@@ -1,12 +1,6 @@
-FROM archlinux/base:latest
+FROM archlinux/base:latest AS build_image
 
-RUN pacman -Sy base-devel lua51 luajit luarocks tup nginx git npm discount sassc --noconfirm && (yes | pacman -Scc || :)
-
-# setup lua (TODO: remove, need only for static/guides compilation)
-RUN luarocks --lua-version=5.1 install moonscript && \
-    luarocks --lua-version=5.1 install discount && \
-    luarocks --lua-version=5.1 install lua-cjson
-RUN eval $(luarocks --lua-version=5.1 path)
+RUN pacman -Sy tup nginx git npm sassc python3 python-pip --noconfirm && (yes | pacman -Scc || :)
 
 WORKDIR /site/sightreading.training
 
@@ -18,11 +12,17 @@ RUN npm install
 ADD . .
 
 RUN sed -i.bak 's/^.*moon.*//' ./Tuprules.tup && \
-    tup init
+    python3 -m pip install -r requirements.txt && \
+    tup init && \
+    tup generate build.sh && \
+    sed -i.bak '2iset -o xtrace' build.sh && \
+    ./build.sh && \
+    rm -r node_modules .tup
 
-RUN tup generate build.sh && \
-    sed -i.bak '2iset -o xtrace' build.sh
+FROM nginx:1.16.1-alpine as final_image
+WORKDIR /site/sightreading.training
+COPY --from=build_image /site/sightreading.training/static /site/sightreading.training/static
+COPY --from=build_image /site/sightreading.training/serverless /site/sightreading.training/serverless
+COPY --from=build_image /site/sightreading.training/mime.types /site/sightreading.training/mime.types
 
-RUN ./build.sh
-
-ENTRYPOINT nginx -c /site/sightreading.training/serverless-nginx.conf
+ENTRYPOINT nginx -c /site/sightreading.training/serverless/nginx.conf
