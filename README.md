@@ -11,7 +11,7 @@ Branch | Description
 [iss4-serverless-build](https://github.com/maizy/sightreading.training/pull/7/files) | Serverless version: build docker container
 [iss5-macos-dev-support](https://github.com/maizy/sightreading.training/pull/6/files) | Dev automation for serverless version, especially for macOS
 [iss5-ios-support](https://github.com/maizy/sightreading.training/pull/8/files) | iOS + Web MIDI Browser support (authored by [@MaienM](https://github.com/MaienM/sightreading.training))
-[iss4-python-guides-converter](https://github.com/maizy/sightreading.training/pull/9/files) | Remove lua requirements for building statics, use python instead)
+[iss4-python-guides-converter](https://github.com/maizy/sightreading.training/pull/9/files) | Remove lua requirements for building statics, use python instead. Lightweight final docker image.
 
 ## Serverless version
 
@@ -26,7 +26,7 @@ docker build -t st-serverless:latest -f serverless.dockerfile .
 Run
 
 ```
-docker run -p 8080:80 st-serverless:latest
+docker run -p 127.0.0.1:8080:80 st-serverless:latest
 ```
 
 Server started at [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
