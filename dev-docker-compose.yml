@@ -15,9 +15,9 @@ services:
         source: ./mime.types
         target: /site/sightreading.training/mime.types
       - type: bind
-        source: ./serverless-nginx.conf
-        target: /site/sightreading.training/serverless-nginx.conf
+        source: ./serverless/nginx-dev.conf
+        target: /site/sightreading.training/nginx.conf
     entrypoint:
       - nginx
       - '-c'
-      - /site/sightreading.training/serverless-nginx.conf
+      - /site/sightreading.training/nginx.conf
