@@ -53,6 +53,7 @@ export default class SightReadingPage extends React.Component {
       scale: window.innerWidth < 1000 ? 0.8 : 1,
       stats: new NoteStats(N.session.currentUser),
       keySignature: new KeySignature(0),
+      staffOptions: {}
     }
   }
 
@@ -300,21 +301,21 @@ export default class SightReadingPage extends React.Component {
 
     let n = noteName(pitch)
 
-    if (NOTE_EVENTS[type] == "noteOn") {
-      if (velocity == 0) {
+    if (NOTE_EVENTS[type] === "noteOn") {
+      if (velocity === 0) {
         this.releaseNote(n);
       } else if (!document.hidden) { // ignore when the browser tab isn't active
         this.pressNote(n);
       }
     }
 
-    if (NOTE_EVENTS[type] == "noteOff") {
+    if (NOTE_EVENTS[type] === "noteOff") {
       this.releaseNote(n);
     }
   }
 
   toggleMode() {
-    if (this.state.mode == "wait") {
+    if (this.state.mode === "wait") {
       this.enterScrollMode();
     } else {
       this.enterWaitMode();
@@ -380,6 +381,10 @@ export default class SightReadingPage extends React.Component {
 
     this.setState(update, callback)
     return update
+  }
+
+  setStaffOptions(setOpts) {
+    this.setState({staffOptions: Object.assign(this.state.staffOptions, setOpts)})
   }
 
   setOffset(value) {
@@ -482,7 +487,9 @@ export default class SightReadingPage extends React.Component {
         })}
 
         setStaff={this.setStaff.bind(this)}
+        setStaffOptions={this.setStaffOptions.bind(this)}
         setKeySignature={k => this.setState({keySignature: k})}
+        staffOptions={this.state.staffOptions}
       />
     </CSSTransition>
   }
@@ -588,6 +595,7 @@ export default class SightReadingPage extends React.Component {
         noteWidth: this.state.noteWidth,
         noteShaking: this.state.noteShaking,
         scale: this.state.scale,
+        showNotesLabel: !!this.state.staffOptions.showNotesLabel
       })
     }
 
