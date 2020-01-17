@@ -34,9 +34,7 @@ export default class Select extends React.Component {
   render() {
     let current = this.currentOption()
 
-    return <div className={classNames("select_component", this.props.className, {
-      focused: this.state.focused
-    })}>
+    return <div className={classNames("select_component", this.props.className)}>
       <div className="selected_option">
         <span className="selected_option_name">{current.name}</span>
         <IconDownArrow width={12} />
@@ -44,8 +42,6 @@ export default class Select extends React.Component {
       <select
         value={current.value}
         name={this.props.name}
-        onFocus={e => this.setState({ focused: true })}
-        onBlur={e => this.setState({ focused: false })}
         onChange={e => this.onChange(e)}>
       {
         this.props.options.map((o, idx) => {
