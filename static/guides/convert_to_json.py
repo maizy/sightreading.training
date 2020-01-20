@@ -12,9 +12,9 @@ if __name__ == '__main__':
         sys.exit(1)
 
     fname = sys.argv[1]
-    with open(fname) as fp:
+    with open(fname, 'rb') as fp:
         result = {
-            'contents': markdown2.markdown(fp.read())
+            'contents': markdown2.markdown(fp.read().decode('utf-8'))
         }
     json.dump(result, sys.stdout)
 
