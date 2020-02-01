@@ -18,6 +18,7 @@ export default class StaffNotes extends React.Component {
     lowerRow: types.number.isRequired,
     heldNotes: types.object.isRequired,
     noteShaking: types.bool,
+    showLabels: types.bool
   }
 
   render() {
@@ -185,7 +186,18 @@ export default class StaffNotes extends React.Component {
 
     let out = []
     this.props.notes.forEach((column, idx) => {
+      let annotation = []
       if (column.annotation) {
+        annotation.push(column.annotation)
+      }
+
+      if (this.props.showLabels === true) {
+        if (Array.isArray(column) && column.length > 0) {
+          annotation.push(column.join(' '))
+        }
+      }
+
+      if (annotation.length > 0) {
         let style = {
           top: "-60%",
           left: `${idx * this.props.noteWidth}px`
@@ -194,7 +206,11 @@ export default class StaffNotes extends React.Component {
           style={style}
           className="annotation"
           key={`annotation-${idx}`}>
-          {column.annotation}
+          {
+            annotation
+                .map(i => <span>{i}</span>)
+                .reduce((prev, curr) => [prev, <br/>, curr])
+          }
         </div>)
       }
     })

@@ -62,6 +62,8 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      // TODO: add build option to show & hide backend elements
+      showBackendItems: false,
       menuOpen: false
     }
   }
@@ -124,19 +126,21 @@ export default class Header extends React.Component {
     let userPanel = null
     let userLinks = this.getPageLinks()
 
-    if (N.session.currentUser) {
-      userPanel = <div className="right_section" key="user_in">
-        {N.session.currentUser.username}
-        {" " }
-        <a href="#" onClick={this.props.doLogout}>Log out</a>
-      </div>
+    if (this.state.showBackendItems) {
+      if (N.session.currentUser) {
+        userPanel = <div className="right_section" key="user_in">
+          {N.session.currentUser.username}
+          {" "}
+          <a href="#" onClick={this.props.doLogout}>Log out</a>
+        </div>
 
-    } else {
-      userPanel = <div className="right_section" key="user_out">
-        <NavLink to="/login" activeClassName="active">Log in</NavLink>
-        {" or "}
-        <NavLink to="/register" activeClassName="active">Register</NavLink>
-      </div>
+      } else {
+        userPanel = <div className="right_section" key="user_out">
+          <NavLink to="/login" activeClassName="active">Log in</NavLink>
+          {" or "}
+          <NavLink to="/register" activeClassName="active">Register</NavLink>
+        </div>
+      }
     }
 
     return [
@@ -150,9 +154,13 @@ export default class Header extends React.Component {
       <NavLink exact key="root" to="/" activeClassName="active">Staff</NavLink>,
       <NavLink exact key="ear-training" to="/ear-training/interval-melodies" activeClassName="active">Ear Training</NavLink>,
       <NavLink exact key="flash-cards" to="/flash-cards/note-math" activeClassName="active">Flash Cards</NavLink>,
-      <NavLink key="play-along" to="/play-along" activeClassName="active">Play Along</NavLink>,
-      <NavLink exact key="about" to="/about" activeClassName="active">Guide</NavLink>,
     ]
+
+    if (this.state.showBackendItems) {
+      links.push(<NavLink key="play-along" to="/play-along" activeClassName="active">Play Along</NavLink>)
+    }
+
+    links.push(<NavLink exact key="about" to="/about" activeClassName="active">Guide</NavLink>)
 
     if (N.session.currentUser) {
       links.push(<NavLink

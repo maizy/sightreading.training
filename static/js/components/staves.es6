@@ -29,6 +29,7 @@ export class Staff extends React.Component {
     heldNotes: types.object.isRequired,
     inGrand: types.bool,
     scale: types.number,
+    showNotesLabel: types.bool
   }
 
   // skips react for performance
@@ -72,7 +73,11 @@ export class Staff extends React.Component {
     if (this.props.notes instanceof NoteList) {
       let scale = this.props.scale || 1
       let noteWidth = Math.floor(this.props.noteWidth * scale)
-      staffNotes = <StaffNotes ref="notes" {...this.props} noteWidth={noteWidth}></StaffNotes>
+      staffNotes = <StaffNotes
+          ref="notes" {...this.props}
+          noteWidth={noteWidth}
+          showLabels={this.props.showNotesLabel}
+      />
     }
 
     if (this.props.notes instanceof SongNoteList) {

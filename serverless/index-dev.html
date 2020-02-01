@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sight Reading Trainer</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+    <link rel="icon" href="/static/img/icon-144.png" sizes="144x144" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <meta content="Practice sight reading right with your MIDI keyboard directly in your browser. Customizable note generation to always give you a challenge. Completely free." property="og:description" />
+    <meta content="Practice sight reading right with your MIDI keyboard directly in your browser. Customizable note generation to always give you a challenge. Completely free." name="description" />
+    <meta content="#727290" name="theme-color" />
+</head>
+
+<body>
+    <div id="page">
+        <div class="page_layout">
+            <div class="header_spacer">
+                <div class="header"><a href="/" class="logo_link"><img alt="" height="35" class="logo" src="/static/img/logo.svg" /><img alt="" height="35" class="logo_small" src="/static/img/logo-small.svg" /></a></div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/lib.js" type="text/javascript"></script>
+    <script src="/static/main.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    requirejs(['st/main'], function(m) { m.init({ "cacheBuster": 1572060007 }) });
+    </script>
+</body>
+
+</html>

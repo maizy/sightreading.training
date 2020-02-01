@@ -17,6 +17,8 @@ export class SettingsPanel extends React.Component {
     generators: types.array.isRequired,
     setStaff: types.func.isRequired,
     setGenerator: types.func.isRequired,
+    setStaffOptions: types.func.isRequired,
+    staffOptions: types.object
   }
 
   constructor(props) {
@@ -42,6 +44,7 @@ export class SettingsPanel extends React.Component {
       <section className="settings_group">
         <h4>Staff</h4>
         {this.renderStaves()}
+        {this.renderStaffOptions()}
       </section>
 
       <section className="settings_group">
@@ -132,6 +135,23 @@ export class SettingsPanel extends React.Component {
         })}>
         {staff.name}</button>;
     })
+  }
+
+  renderStaffOptions() {
+    let showNotesLabel = this.props.staffOptions && this.props.staffOptions.showNotesLabel
+    return <div className="bool_row">
+      <label>
+        <input
+            type="checkbox"
+            defaultChecked={showNotesLabel}
+            onChange={(e) => {
+              console.debug(e.target.checked)
+              this.props.setStaffOptions({showNotesLabel: e.target.checked})
+            }}
+        />
+        Show notes label
+      </label>
+    </div>
   }
 
   renderGenerators() {
