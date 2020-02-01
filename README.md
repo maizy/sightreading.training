@@ -14,6 +14,7 @@ Branch | Description
 [iss4-python-guides-converter](https://github.com/maizy/sightreading.training/pull/9/files) | Remove lua requirements for building statics, use python instead. Lightweight final docker image.
 [disable-backend](https://github.com/maizy/sightreading.training/pull/13/files) | Disable lua files compiling
 [iss11-notes-label](https://github.com/maizy/sightreading.training/pull/15) | Show notes label
+[iss14-decrease-octave-num](https://github.com/maizy/sightreading.training/pull/16/files) | decrease octave number (ex: C5 -> C4). done with a very dirty hack.
 
 ## Serverless version
 
