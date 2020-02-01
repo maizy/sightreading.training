@@ -2,7 +2,7 @@
 import * as React from "react"
 import {classNames} from "lib"
 
-import {parseNote, noteName, LETTER_OFFSETS} from "st/music"
+import {parseNote, noteName, LETTER_OFFSETS, fixNoteOctaveNum} from "st/music"
 import {keyCodeToChar, noteForKey} from "st/keyboard_input"
 import * as types from "prop-types"
 
@@ -185,6 +185,7 @@ export default class Keyboard extends React.PureComponent {
           onTouchStart={this.onTouchStart}
           onTouchEnd={this.onTouchEnd}
           data-note={name}
+          data-note-fixed={fixNoteOctaveNum(name)}
           className={classes} />
       </div>)
     }

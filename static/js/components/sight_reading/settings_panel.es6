@@ -7,7 +7,7 @@ import Select from "st/components/select"
 import {trigger} from "st/events"
 import {generatorDefaultSettings, fixGeneratorSettings} from "st/generators"
 
-import {KeySignature, ChromaticKeySignature, noteName, parseNote} from "st/music"
+import {KeySignature, ChromaticKeySignature, noteName, parseNote, fixNoteOctaveNum} from "st/music"
 import * as types from "prop-types"
 
 export class SettingsPanel extends React.Component {
@@ -364,7 +364,7 @@ export class GeneratorSettings extends React.PureComponent {
             ])
           }}
           value={noteName(currentValue[0])}
-          options={possibleMin.map(name => ({ value: name, name }))}
+          options={possibleMin.map(name => ({ value: name, name: fixNoteOctaveNum(name) }))}
         />
       </label>
 
@@ -378,7 +378,7 @@ export class GeneratorSettings extends React.PureComponent {
             ])
           }}
           value={noteName(currentValue[1])}
-          options={possibleMax.map(name => ({ value: name, name }))}
+          options={possibleMax.map(name => ({ value: name, name: fixNoteOctaveNum(name) }))}
         />
       </label>
     </div>

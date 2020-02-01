@@ -116,6 +116,18 @@ export function parseNote(note) {
   return n;
 }
 
+// very dirty way to fix octave number
+export function fixNoteOctaveNum(note) {
+  const parsed = note.match(/^([A-G])(#|b)?(\d+)$/)
+
+  if (!parsed) {
+    throw new Error(`parseNote: invalid note format '${note}'`)
+  }
+
+  let [, letter, accidental, octave] = parsed
+  return letter + (accidental || '') + (parseInt(octave, 10) - 1)
+}
+
 export function noteStaffOffset(note) {
   let [_, name, octave] = note.match(/(\w)[#b]?(\d+)/)
   if (!name) { throw "Invalid note" }
