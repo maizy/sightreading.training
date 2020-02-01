@@ -7,6 +7,7 @@ import {parseNote, noteStaffOffset, MIDDLE_C_PITCH} from "st/music"
 import {SongNoteList, SongNote} from "st/song_note_list"
 import LedgerLines from "st/components/staff/ledger_lines"
 import WholeNotes from "st/components/staff/whole_notes"
+import { fixNoteOctaveNum } from "st/music"
 
 export default class StaffNotes extends React.Component {
   static propTypes = {
@@ -193,7 +194,7 @@ export default class StaffNotes extends React.Component {
 
       if (this.props.showLabels === true) {
         if (Array.isArray(column) && column.length > 0) {
-          annotation.push(column.join(' '))
+          annotation.push(column.map(fixNoteOctaveNum).join(' '))
         }
       }
 

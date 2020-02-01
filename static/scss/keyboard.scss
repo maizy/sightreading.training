@@ -33,7 +33,7 @@
 
     .key.labeled {
         &:before {
-            content: attr(data-note);
+            content: attr(data-note-fixed);
             position: absolute;
             bottom: 20%;
             left: 0;
