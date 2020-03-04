@@ -20,13 +20,22 @@ Branch | Description
 
 Version without lua backend. Only nginx serving statics.
 
-Build
+#### Prebuild containers for releases
+
+https://hub.docker.com/r/maizy/sightreading-training-static/tags
+
+```
+docker run -d --name=sightreading-training --restart=always \
+    -p 8080:80 maizy/sightreading-training-static:latest
+```
+
+#### Build
 
 ```
 docker build -t st-serverless:latest -f serverless.dockerfile .
 ```
 
-Run
+#### Run
 
 ```
 docker run -p 127.0.0.1:8080:80 st-serverless:latest
