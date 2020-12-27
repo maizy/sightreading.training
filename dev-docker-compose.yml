@@ -7,17 +7,17 @@ services:
     volumes:
       - type: bind
         source: ./static
-        target: /site/sightreading.training/static
+        target: /site/pianistica/static
       - type: bind
         source: ./serverless
-        target: /site/sightreading.training/serverless
+        target: /site/pianistica/serverless
       - type: bind
         source: ./mime.types
-        target: /site/sightreading.training/mime.types
+        target: /site/pianistica/mime.types
       - type: bind
         source: ./serverless/nginx-dev.conf
-        target: /site/sightreading.training/nginx.conf
+        target: /site/pianistica/nginx.conf
     entrypoint:
       - nginx
       - '-c'
-      - /site/sightreading.training/nginx.conf
+      - /site/pianistica/nginx.conf
