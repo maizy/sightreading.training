@@ -1,8 +1,6 @@
 FROM archlinux/base:latest AS build_image
 
-RUN pacman -Sy tup nginx git npm sassc python3 python-pip --noconfirm && (yes | pacman -Scc || :)
-
-RUN rustup install nightly && rustup default nightly
+RUN pacman -Sy tup nginx git nodejs-lts-fermium npm sassc python3 python-pip --noconfirm && (yes | pacman -Scc || :)
 
 WORKDIR /site/pianistica
 
@@ -13,8 +11,7 @@ RUN npm install
 
 ADD . .
 
-RUN sed -i.bak 's/^.*moon.*//' ./Tuprules.tup && \
-    python3 -m pip install -r requirements.txt && \
+RUN python3 -m pip install -r requirements.txt && \
     tup init && \
     tup generate build.sh && \
     sed -i.bak '2iset -o xtrace' build.sh && \

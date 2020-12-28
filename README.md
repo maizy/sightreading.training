@@ -22,7 +22,7 @@ Branch | Description
 [disable-backend](https://github.com/maizy/sightreading.training/pull/13/files) | Disable lua files compiling
 [iss11-notes-label](https://github.com/maizy/sightreading.training/pull/15) | Show notes label
 [iss14-decrease-octave-num](https://github.com/maizy/sightreading.training/pull/16/files) | decrease octave number (ex: C5 -> C4). done with a very dirty hack.
-[iss21-fork-rename](#todo) | fork renamed to Pianistica
+[iss21-fork-rename](https://github.com/maizy/sightreading.training/pull/27) | fork renamed to Pianistica, lua backend removed
 
 ## Serverless version
 
@@ -57,17 +57,30 @@ Server started at [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
 
 ```
 brew install --cask osxfuse # restart may required
-brew install sassc npm tup python rust
+brew install sassc nvm tup python
 python -m pip install -r requirements.txt
 ```
 
-#### 2\. init tup DB
+#### 2\. setup nvm, install nodejs 14.15.x, init node modules
+
+See `brew info nvm` for nvm setup instructions.
+
+```
+nvm install 14.15.3
+nvm use 14.15.3
+node --version
+# v14.15.3
+npm --version
+# 6.14.9
+```
+
+#### 3\. init tup DB
 
 ```
 tup init
 ```
 
-#### 3\. update libs & generated files
+#### 4\. update libs & generated files
 
 ```
 npm install
@@ -81,7 +94,7 @@ rm -rf .tup/
 ./cleanup.sh
 ```
 
-Then do 2nd & 3rd steps again.
+Then do steps #3, 4 again.
 
 ## Run dev serverless version
 
