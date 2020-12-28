@@ -100,7 +100,7 @@ export default class MelodyPlaybackExercise extends React.Component {
       this.state.noteHistory.shift()
     }
 
-    if (this.state.noteHistory.toString() == this.state.currentNotes.toString()) {
+    if (this.state.noteHistory.toNoteString() == this.state.currentNotes.toNoteString()) {
       this.setState({
         noteHistory: new NoteList([]),
         locked: true,
@@ -304,6 +304,7 @@ export default class MelodyPlaybackExercise extends React.Component {
 
     return <div className="melody_playback_exercise">
       <div className="exercise_header">
+        {this.props.toggleSidebarButton}
         <h1 className="exercise_label">Melody Playback</h1>
       </div>
       {page}
