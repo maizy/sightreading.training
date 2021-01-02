@@ -1,3 +1,17 @@
+# About Pianistica
+
+Pianistica is a fork of Sight Reading Trainer.
+
+Original Sight Reading Trainer site is <https://sightreading.training/>
+
+Fork source code on GitHub <https://github.com/maizy/sightreading.training>
+
+Pianistica should work on modern desktop browsers. For iOS/iPadOS use free 
+[Web MIDI Browser](https://apps.apple.com/us/app/web-midi-browser/id953846217)
+which is fully compatable with the fork.
+
+---
+
 # About Sightreading.training
 
 This site is a free way to practice [sight
