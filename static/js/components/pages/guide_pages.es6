@@ -97,16 +97,10 @@ export default class GuidePage extends React.PureComponent {
             <li>{link("/guide/ear-training", "Ear Training")}</li>
           </ul>
         </section>
-        <section>
-          <div className="nav_header">Play Along</div>
-          <ul>
-            <li>{link("/guide/lml", "LML")}</li>
-          </ul>
-        </section>
       </section>
       <Switch>
         <Route exact path="/about">
-          <GuideContents title="About Sight Reading Trainer" pageSource="about" />
+          <GuideContents title="About Pianistica" pageSource="about" />
         </Route>
 
         <Route exact path="/guide/generators">
@@ -119,10 +113,6 @@ export default class GuidePage extends React.PureComponent {
 
         <Route exact path="/guide/ear-training">
           <GuideContents title="Ear Training Tools" pageSource="ear_training" />
-        </Route>
-
-        <Route exact path="/guide/lml">
-          <GuideContents title="Programming a song with LML" pageSource="lml" />
         </Route>
 
         <Route>

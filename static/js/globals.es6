@@ -2,9 +2,9 @@
 
 export function setTitle(title) {
   if (title) {
-    document.title = `${title} | Sight Reading Trainer`
+    document.title = `${title} | Pianistica`
   } else {
-    document.title = "Sight Reading Trainer"
+    document.title = "Pianistica"
   }
 }
 

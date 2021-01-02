@@ -15,4 +15,3 @@ TOP = $(TUP_CWD)
 !pegjs = |> cat %f | $(TOP)/node_modules/.bin/pegjs --format amd  | sed -e 's/^define(/define("st\/%O", /' > %o  |>
 
 : foreach *.scss |> !scss |> %B.css
-#: foreach *.moon |> moonc %f |> %B.lua

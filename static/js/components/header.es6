@@ -1,5 +1,8 @@
+/*global N*/
 
 import * as React from "react"
+import * as ReactDOM from "react-dom"
+
 import {Link, NavLink} from "react-router-dom"
 import MidiButton from "st/components/midi_button"
 import {trigger} from "st/events"
@@ -76,18 +79,20 @@ export default class Header extends React.Component {
 
     if (this.state.menuOpen) {
       let account_area = null
-      if (N.session.currentUser) {
-        account_area = <div className="account_area logged_in">
+      if (this.state.showBackendItems) {
+          if (N.session.currentUser) {
+              account_area = <div className="account_area logged_in">
           <span className="username">
             {N.session.currentUser.username}
           </span>
-          <a href="#" onClick={this.props.doLogout}>Log out</a>
-        </div>
-      } else {
-        account_area = <div className="account_area logged_out">
-          <NavLink to="/login" activeClassName="active">Log in</NavLink>
-          <NavLink to="/register" activeClassName="active">Register</NavLink>
-        </div>
+                  <a href="#" onClick={this.props.doLogout}>Log out</a>
+              </div>
+          } else {
+              account_area = <div className="account_area logged_out">
+                  <NavLink to="/login" activeClassName="active">Log in</NavLink>
+                  <NavLink to="/register" activeClassName="active">Register</NavLink>
+              </div>
+          }
       }
 
       menu = <div
@@ -188,8 +193,8 @@ export default class Header extends React.Component {
 
     return <div className="header">
       <Link to="/" className="logo_link">
-        <img className="logo" src="/static/img/logo.svg" height="35" alt="" />
-        <img className="logo_small" src="/static/img/logo-small.svg" height="35" alt="" />
+        <span class="logo">♬ Pianistica</span>
+        <span class="logo_small">♬</span>
       </Link>
 
       <SizedElement className="user_links" onWidth={(w) => {
