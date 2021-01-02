@@ -8,7 +8,7 @@ All kudos go to original
 
 ## Static version
 
-https://maizy.github.io/pianistica/
+https://pianistica.maizy.ru/
 
 ## In this fork
 
@@ -22,7 +22,7 @@ Branch | Description
 [disable-backend](https://github.com/maizy/sightreading.training/pull/13/files) | Disable lua files compiling
 [iss11-notes-label](https://github.com/maizy/sightreading.training/pull/15) | Show notes label
 [iss14-decrease-octave-num](https://github.com/maizy/sightreading.training/pull/16/files) | decrease octave number (ex: C5 -> C4). done with a very dirty hack.
-[iss21-fork-rename](https://github.com/maizy/sightreading.training/pull/27) | fork renamed to Pianistica, lua backend removed
+[iss21-fork-rename](https://github.com/maizy/sightreading.training/pull/27) | fork renamed to Pianistica, lua backend removed, static version added, upgraded from upstream
 
 ## Serverless version
 
